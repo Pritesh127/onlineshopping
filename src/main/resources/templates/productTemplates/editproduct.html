@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Shop Online</title>
+    <style>
+        body, html {
+          height: 100%;
+          margin: 0;
+        }
+        
+        .content {
+          /* The image used */
+          /*background-image: url("homePageImages/homepageimage.jpg");*/
+        
+          /* Full height */
+          height: 100%; 
+        width:100%;
+          /* Center and scale the image nicely */
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+        *{
+			margin : 0px;
+			padding: 0px;
+			box-sizing: border-box;
+		}
+       .logo{
+        background-color: black;
+        height: 60px;
+        width: 30%;
+        float: left;
+       }
+       .navpart{
+        background-color: black;
+        height: 60px;
+        width: 70%;
+        float:left;
+        text-align: right;
+       }
+
+       nav .logo p{
+		height: 60px;
+        line-height: 60px;
+			font-size: 30px;
+			font-weight: bold;
+			float:center;
+			color:#FEF9E7;
+			text-transform: uppercase;
+			letter-spacing:2.5px;
+            text-align: center;
+		}
+
+        nav li{
+            line-height: 60px;
+		display: inline-block;
+		list-style: none;
+		}
+		
+		label {
+    display: block;
+    width: 100%;
+    margin-left: 10%;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    text-align: left;
+    color: #555;
+    font-weight: bold;
+}
+
+.main {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+    padding: 10px 20px;
+    transition: transform 0.2s;
+    width: 500px;
+    text-align: center;
+    margin-left: 25%;
+}
+		
+		nav li a{
+		font-size:20px;
+		text-transform:uppercase;
+		text-decoration:none;
+		padding: 0px 30px;
+		color:white;
+		}
+		nav li a:hover{
+		color:black;
+		transition:all 0.5s ease 0s;
+		}
+
+        
+
+		/* css for side bar */
+		.sidebar{
+			float:left;
+            width:20%;
+            height:700px;
+            background: #D6DBDF;
+        }
+
+        .sidebar ul a li{
+            padding-top: 15px;
+            padding-bottom: 15px;
+			padding-left: 40px;
+            list-style: none;
+            width:100%;   
+        }
+        
+        .sidebar ul a{
+            text-decoration: none;
+            font-size:20px;
+			color:black;
+        }
+        .sidebar ul a :hover{
+            background-color: #EBEDEF ;
+			cursor: pointer;
+        }
+        .row{
+        	margin-top: 1%;
+        	
+        }
+        .tb{
+        	float: left;
+        	width: 80%;
+        	margin-top: 1%;
+        }
+        
+        
+        .wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+button {
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    background-color: #4CAF50;
+    width: 100%;
+    font-size: 16px;
+}
+
+input,select {
+    display: block;
+    width: 100%;
+    width: 80%;
+    margin-left: 10%;
+    margin-bottom: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+form{
+margin-top:5%;
+}
+        </style>
+</head>
+<body>
+    
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container-fluid">
+            <h4 style="color: white;">   Online Shopping </h4>
+          <a class="navbar-brand" href="../loginpagefinal/login.html" >
+            <!-- <img src="loginRegistrationImages/loginimagelogo.png" alt="Avatar Logo" style="width:40px;" class="rounded-pill" > 
+           -->Logout
+          </a>
+        </div>
+      </nav>
+
+  <div class="sidebar" id="mysidebar">
+		<ul>
+			<a href="/landingpage"><li>Dashboard</li></a>
+
+			<a href="/users/"><li>Users</li></a>
+			
+			<a href="/products"><li>Products</li></a>
+			
+			<a href="/category"><li>Category</li></a>
+			
+		</ul>
+	</div> 
+  <div class="content">
+    <div class="row">
+		<div class="col-lg-3">
+		
+		  	<!--  <a th:href = "@{/addcategory}" class="btn btn-primary btn-sm mb-3">Add Category</a>-->
+		  	
+		  	<a href="/addproduct" class="btn btn-primary">Add Category</a> 
+		  	
+		  	
+		</div>
+	</div>
+	
+	<div class="tb">
+	 	
+	 	<div class="main">
+        
+        <h3>Update Product</h3>
+       <form th:action="@{/product/{id}(id=${entityProduct.productId})}" th:object = "${entityProduct}" method="POST">
+        <!--  <form action="/category" method="post"> -->
+        	
+        	<label for="productName">
+                  Product Category
+              </label>
+            <select th:field = "*{productCategory}">
+             <option value="">Nothing Selected</option>
+            	<option th:each="category : ${listCategory}"
+            			th:value="${category.categoryName}"
+            			th:utext="${category.categoryName}"
+            		/>
+            	
+            	
+            </select>
+        
+            <label for="productName">
+                  Product Name
+              </label>
+            <input type="text"
+                   id="productname"
+                   name="productName"
+                    th:field = "*{productName}"
+                   placeholder="Enter Product Name" required>
+                   
+ 			<label for="productName">
+                  Brand Name
+              </label>
+            <input type="text"
+                   id="brandname"
+                   name="productBrand"
+                   th:field = "*{productBrand}"
+                   placeholder="Enter Brand Name" required>
+                   
+             <label for="productprice">
+                  Product Price
+              </label>
+            <input type="text"
+                   id="productprice"
+                   name="productPrice"
+                   th:field = "*{productPrice}"
+                   placeholder="Enter Product Price" required>
+            <div class="wrap">
+                <button type="submit"
+                        >
+                    Submit
+                </button>
+            </div>
+        </form>
+        
+    </div>
+	 	
+	 	
+	</div>
+  </div>
+
+
+
+</body>
+</html>
+
+</body>
+</html>
