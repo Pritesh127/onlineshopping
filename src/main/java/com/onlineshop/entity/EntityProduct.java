@@ -2,6 +2,8 @@ package com.onlineshop.entity;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,6 +22,7 @@ public class EntityProduct {
 	private String productName;
 	private String productPrice;
 	private String productBrand;
+	@DateTimeFormat(pattern = "yyyy-mm-dd")
 	private Date manufacturingDate;
 	
 

@@ -26,6 +26,7 @@ public class RegistrationController {
 	
 	@PostMapping("/registration")
 	public String registration(@ModelAttribute("user") User user) {
+		System.out.println(user);
 		userService.saveUser(user);
 		System.out.println("*****************************");
 		System.out.println(user);

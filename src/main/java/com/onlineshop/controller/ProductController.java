@@ -59,7 +59,8 @@ public class ProductController {
 		public String addProduct(@ModelAttribute("entityProduct") EntityProduct entityProduct) {
 			System.out.println("inside add category method ***************");
 			System.out.println(entityProduct);
-			entityProduct.setManufacturingDate(new Date());
+//			entityProduct.setManufacturingDate(new Date());
+			
 			productService.saveProduct(entityProduct);
 			
 //			return "categoryTemplate/categorypage";

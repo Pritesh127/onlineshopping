@@ -15,4 +15,6 @@ public interface ProductService {
 	EntityProduct updateProduct(EntityProduct entityProduct);
 	
 	void deleteProduct(int id);
-}
+	
+	
+ }
